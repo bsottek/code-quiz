@@ -82,6 +82,14 @@ var questions = function(){
         btn4.className = "answer-button";
         heading.appendChild(btn4);
 
+        let answer = "";
+
+        var answerBtn = document.querySelector('.answer-button');
+        answerBtn.addEventListener('click', function() {
+            answer = this.textContent;
+            console.log(answer);
+        })
+
 }
 
 startBtn.onclick = countdown;
