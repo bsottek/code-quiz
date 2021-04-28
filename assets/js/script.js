@@ -57,6 +57,7 @@ var countdown = function() {
 
 var questions = function(){
         var i = 0;
+        var answer = "";
         //replace sub-text with question text
         document.getElementById("sub-text").textContent = questionsArray[i].question;
         //hide start button
@@ -67,28 +68,50 @@ var questions = function(){
 
         let btn1 = document.createElement("button");
         btn1.textContent = questionsArray[i].a1;
-        btn1.className = "answer-button";
+        btn1.id = "answer-button-1";
         heading.appendChild(btn1);
-        let btn2 = document.createElement("button");
-        btn2.textContent = questionsArray[i].a2;
-        btn2.className = "answer-button";
-        heading.appendChild(btn2);
-        let btn3 = document.createElement("button");
-        btn3.textContent = questionsArray[i].a3;
-        btn3.className = "answer-button";
-        heading.appendChild(btn3);
-        let btn4 = document.createElement("button");
-        btn4.textContent = questionsArray[i].a4;
-        btn4.className = "answer-button";
-        heading.appendChild(btn4);
-
-        let answer = "";
-
-        var answerBtn = document.querySelector('.answer-button');
-        answerBtn.addEventListener('click', function() {
+        let btn1El = document.querySelector('#answer-button-1')
+        btn1El.addEventListener('click',function(){
             answer = this.textContent;
             console.log(answer);
-        })
+        });
+
+        let btn2 = document.createElement("button");
+        btn2.textContent = questionsArray[i].a2;
+        btn2.id = "answer-button-2";
+        heading.appendChild(btn2);
+        let btn2El = document.querySelector('#answer-button-2')
+        btn2El.addEventListener('click', function () {
+            answer = this.textContent;
+            console.log(answer);
+        });
+
+        let btn3 = document.createElement("button");
+        btn3.textContent = questionsArray[i].a3;
+        btn3.id = "answer-button-3";
+        heading.appendChild(btn3);
+        let btn3El = document.querySelector('#answer-button-3')
+        btn3El.addEventListener('click', function () {
+            answer = this.textContent;
+            console.log(answer);
+        });
+
+        let btn4 = document.createElement("button");
+        btn4.textContent = questionsArray[i].a4;
+        btn4.id = "answer-button-4";
+        heading.appendChild(btn4);
+        let btn4El = document.querySelector('#answer-button-4')
+        btn4El.addEventListener('click', function () {
+            answer = this.textContent;
+            console.log(answer);
+        });
+
+
+        // var answerBtn = document.querySelector('.answer-button');
+        // answerBtn.addEventListener('click', function() {
+        //     answer = this.textContent;
+        //     console.log(answer);
+        // })
 
 }
 
