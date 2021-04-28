@@ -1,6 +1,9 @@
 var timerEl = document.getElementById('timer');
 var mainEl = document.getElementById('heading');
 var startBtn = document.getElementById('start');
+var iterator = 0;
+var score = 0;
+var answer = "";
 
 var questionsArray = [
     {
@@ -37,12 +40,10 @@ var questionsArray = [
     },
 ];
 
-var score = 0;
-
 //timer in header
 var countdown = function() {
     var timeLeft = 60;
-    questions();
+    quiz();
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
         document.getElementById('timer').innerHTML = '00:' + timeLeft;
@@ -55,64 +56,78 @@ var countdown = function() {
 }
 
 
-var questions = function(){
-        var i = 0;
-        var answer = "";
-        //replace sub-text with question text
-        document.getElementById("sub-text").textContent = questionsArray[i].question;
-        //hide start button
-        document.getElementById("start").style.visibility = "hidden";
+var quiz = function(){
+    questionServer();
 
-        //create, fill, and append answers
-        var heading = document.getElementById("heading");
+    if(answer === questionsArray[iterator].correct){
+        score += 20;
+        console.log(score);
+        alert("Correct!");
+    }else{
+        alert("Incorrect!");
+    };
 
-        let btn1 = document.createElement("button");
-        btn1.textContent = questionsArray[i].a1;
-        btn1.id = "answer-button-1";
-        heading.appendChild(btn1);
-        let btn1El = document.querySelector('#answer-button-1')
-        btn1El.addEventListener('click',function(){
-            answer = this.textContent;
-            console.log(answer);
-        });
+    if(iterator < questionsArray.length & timeLeft > 0){
+        iterator++;
+        questionServer();
+    }else{
+        endGame();
+    }
 
-        let btn2 = document.createElement("button");
-        btn2.textContent = questionsArray[i].a2;
-        btn2.id = "answer-button-2";
-        heading.appendChild(btn2);
-        let btn2El = document.querySelector('#answer-button-2')
-        btn2El.addEventListener('click', function () {
-            answer = this.textContent;
-            console.log(answer);
-        });
+}
 
-        let btn3 = document.createElement("button");
-        btn3.textContent = questionsArray[i].a3;
-        btn3.id = "answer-button-3";
-        heading.appendChild(btn3);
-        let btn3El = document.querySelector('#answer-button-3')
-        btn3El.addEventListener('click', function () {
-            answer = this.textContent;
-            console.log(answer);
-        });
+var questionServer = function(){
+    //replace sub-text with question text
+    document.getElementById("sub-text").textContent = questionsArray[iterator].question;
+    //hide start button
+    document.getElementById("start").style.visibility = "hidden";
 
-        let btn4 = document.createElement("button");
-        btn4.textContent = questionsArray[i].a4;
-        btn4.id = "answer-button-4";
-        heading.appendChild(btn4);
-        let btn4El = document.querySelector('#answer-button-4')
-        btn4El.addEventListener('click', function () {
-            answer = this.textContent;
-            console.log(answer);
-        });
+    //create, fill, and append answers
+    var heading = document.getElementById("heading");
 
+    let btn1 = document.createElement("button");
+    btn1.textContent = questionsArray[iterator].a1;
+    btn1.id = "answer-button-1";
+    heading.appendChild(btn1);
+    let btn1El = document.querySelector('#answer-button-1')
+    btn1El.addEventListener('click', function () {
+        answer = this.textContent;
+        console.log(answer);
+    });
 
-        // var answerBtn = document.querySelector('.answer-button');
-        // answerBtn.addEventListener('click', function() {
-        //     answer = this.textContent;
-        //     console.log(answer);
-        // })
+    let btn2 = document.createElement("button");
+    btn2.textContent = questionsArray[iterator].a2;
+    btn2.id = "answer-button-2";
+    heading.appendChild(btn2);
+    let btn2El = document.querySelector('#answer-button-2')
+    btn2El.addEventListener('click', function () {
+        answer = this.textContent;
+        console.log(answer);
+    });
 
+    let btn3 = document.createElement("button");
+    btn3.textContent = questionsArray[iterator].a3;
+    btn3.id = "answer-button-3";
+    heading.appendChild(btn3);
+    let btn3El = document.querySelector('#answer-button-3')
+    btn3El.addEventListener('click', function () {
+        answer = this.textContent;
+        console.log(answer);
+    });
+
+    let btn4 = document.createElement("button");
+    btn4.textContent = questionsArray[iterator].a4;
+    btn4.id = "answer-button-4";
+    heading.appendChild(btn4);
+    let btn4El = document.querySelector('#answer-button-4')
+    btn4El.addEventListener('click', function () {
+        answer = this.textContent;
+        console.log(answer);
+    });
+}
+
+var endGame = function() {
+    alert("End of simulation");
 }
 
 startBtn.onclick = countdown;
