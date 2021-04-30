@@ -75,13 +75,24 @@ var questionServer = function(){
     //hide start button
     document.getElementById("start").style.visibility = "hidden";
 
-    //create, fill, and append answers
-    var heading = document.getElementById("heading");
+    //clear old info
+    if(document.getElementById('buttons')){
+        var el = document.getElementById('buttons');
+        el.parentNode.removeChild(el);
+    };
 
+    // assign element vars and create button div
+    var heading = document.getElementById("heading");
+    let btnDiv = document.createElement("div");
+    btnDiv.id = "buttons";
+    heading.appendChild(btnDiv);
+
+    //create buttons, fill with answers, append to button div, listen for click, run answer handler
     let btn1 = document.createElement("button");
     btn1.textContent = questionsArray[iterator].a1;
     btn1.id = "answer-button-1";
-    heading.appendChild(btn1);
+    btn1.className = "answer-button";
+    btnDiv.appendChild(btn1);
     let btn1El = document.querySelector('#answer-button-1')
     btn1El.addEventListener('click', function () {
         answer = this.textContent;
@@ -91,7 +102,8 @@ var questionServer = function(){
     let btn2 = document.createElement("button");
     btn2.textContent = questionsArray[iterator].a2;
     btn2.id = "answer-button-2";
-    heading.appendChild(btn2);
+    btn2.className = "answer-button";
+    btnDiv.appendChild(btn2);
     let btn2El = document.querySelector('#answer-button-2')
     btn2El.addEventListener('click', function () {
         answer = this.textContent;
@@ -101,7 +113,8 @@ var questionServer = function(){
     let btn3 = document.createElement("button");
     btn3.textContent = questionsArray[iterator].a3;
     btn3.id = "answer-button-3";
-    heading.appendChild(btn3);
+    btn3.className = "answer-button";
+    btnDiv.appendChild(btn3);
     let btn3El = document.querySelector('#answer-button-3')
     btn3El.addEventListener('click', function () {
         answer = this.textContent;
@@ -111,7 +124,8 @@ var questionServer = function(){
     let btn4 = document.createElement("button");
     btn4.textContent = questionsArray[iterator].a4;
     btn4.id = "answer-button-4";
-    heading.appendChild(btn4);
+    btn4.className = "answer-button";
+    btnDiv.appendChild(btn4);
     let btn4El = document.querySelector('#answer-button-4')
     btn4El.addEventListener('click', function () {
         answer = this.textContent;
@@ -148,5 +162,6 @@ var iterationHandler = function(){
 var endGame = function() {
     alert("End of simulation");
 }
+
 
 startBtn.onclick = countdown;
