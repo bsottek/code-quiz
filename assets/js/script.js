@@ -51,6 +51,7 @@ var countdown = function() {
         timeLeft--;
         if (timeLeft < 0) {
             clearInterval(timeInterval);
+            endGame();
         }
     }, 1000);
 }
@@ -59,20 +60,12 @@ var countdown = function() {
 var quiz = function(){
     questionServer();
 
-    if(answer === questionsArray[iterator].correct){
-        score += 20;
-        console.log(score);
-        alert("Correct!");
-    }else{
-        alert("Incorrect!");
-    };
-
-    if(iterator < questionsArray.length & timeLeft > 0){
-        iterator++;
-        questionServer();
-    }else{
-        endGame();
-    }
+    // if(iterator < questionsArray.length & timeLeft > 0){
+    //     iterator++;
+    //     questionServer();
+    // }else{
+    //     endGame();
+    // }
 
 }
 
@@ -92,7 +85,7 @@ var questionServer = function(){
     let btn1El = document.querySelector('#answer-button-1')
     btn1El.addEventListener('click', function () {
         answer = this.textContent;
-        console.log(answer);
+        answerHandler();
     });
 
     let btn2 = document.createElement("button");
@@ -102,7 +95,7 @@ var questionServer = function(){
     let btn2El = document.querySelector('#answer-button-2')
     btn2El.addEventListener('click', function () {
         answer = this.textContent;
-        console.log(answer);
+        answerHandler();
     });
 
     let btn3 = document.createElement("button");
@@ -112,7 +105,7 @@ var questionServer = function(){
     let btn3El = document.querySelector('#answer-button-3')
     btn3El.addEventListener('click', function () {
         answer = this.textContent;
-        console.log(answer);
+        answerHandler();
     });
 
     let btn4 = document.createElement("button");
@@ -122,8 +115,34 @@ var questionServer = function(){
     let btn4El = document.querySelector('#answer-button-4')
     btn4El.addEventListener('click', function () {
         answer = this.textContent;
-        console.log(answer);
+        answerHandler();
     });
+}
+
+var answerHandler = function(){
+    if (answer === questionsArray[iterator].correct) {
+        score += 20;
+        console.log(score);
+        alert("Correct!");
+    } else {
+        alert("Incorrect!");
+    };
+
+    if (iterator < questionsArray.length){
+        iterator++;
+        questionServer();
+    }else{
+        endGame;
+    }
+}
+
+var iterationHandler = function(){
+    if (iterator < questionsArray.length & timeLeft > 0) {
+        iterator++;
+        questionServer();
+    } else {
+        endGame();
+    }
 }
 
 var endGame = function() {
