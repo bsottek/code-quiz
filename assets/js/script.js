@@ -168,10 +168,27 @@ var endGame = function() {
         el.parentNode.removeChild(el);
     };
 
+    //print score to screen
     scoreEl = document.createElement("h2");
     scoreEl.id = "score";
     scoreEl.textContent = score;
     heading.appendChild(scoreEl);
+
+    //compare to high score
+    scoreMsg = document.createElement('p');
+    scoreMsg.id = 'score-message';
+    heading.appendChild(scoreMsg);
+
+    var highScore = localStorage.getItem('highScore');
+
+    if(!highScore || highScore < score){
+        scoreMsg.textContent = "Congratulations! You hold the new high score!";
+        localStorage.setItem('highScore', score);
+    }else{
+        scoreMsg.textContent = "You did not beat the high score of " + highScore;
+    }
+
+    
 
 
 }
