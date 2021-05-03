@@ -60,13 +60,6 @@ var countdown = function() {
 var quiz = function(){
     questionServer();
 
-    // if(iterator < questionsArray.length & timeLeft > 0){
-    //     iterator++;
-    //     questionServer();
-    // }else{
-    //     endGame();
-    // }
-
 }
 
 var questionServer = function(){
@@ -166,7 +159,7 @@ var iterationHandler = function(){
 var endGame = function() {
     score = score + timeLeft;
     console.log(score);
-    // document.getElementById("timer").style.visibility = "hidden";
+    document.getElementById("timer").style.visibility = "hidden";
     document.getElementById("sub-text").textContent = "That's it! The quiz is over and here's your score:"
 
     //clear buttons
@@ -174,6 +167,11 @@ var endGame = function() {
         var el = document.getElementById('buttons');
         el.parentNode.removeChild(el);
     };
+
+    scoreEl = document.createElement("h2");
+    scoreEl.id = "score";
+    scoreEl.textContent = score;
+    heading.appendChild(scoreEl);
 
 
 }
