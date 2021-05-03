@@ -139,6 +139,8 @@ var answerHandler = function(){
         console.log(score);
         alert("Correct!");
     } else {
+        timeLeft -= 10;
+        console.log(score);
         alert("Incorrect!");
     };
 
