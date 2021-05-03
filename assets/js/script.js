@@ -4,6 +4,7 @@ var startBtn = document.getElementById('start');
 var iterator = 0;
 var score = 0;
 var answer = "";
+var timeLeft = 60;
 
 var questionsArray = [
     {
@@ -42,7 +43,6 @@ var questionsArray = [
 
 //timer in header
 var countdown = function() {
-    var timeLeft = 60;
     quiz();
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
@@ -162,7 +162,18 @@ var iterationHandler = function(){
 }
 
 var endGame = function() {
-    alert("End of simulation");
+    score = score + timeLeft;
+    console.log(score);
+    // document.getElementById("timer").style.visibility = "hidden";
+    document.getElementById("sub-text").textContent = "That's it! The quiz is over and here's your score:"
+
+    //clear buttons
+    if (document.getElementById('buttons')) {
+        var el = document.getElementById('buttons');
+        el.parentNode.removeChild(el);
+    };
+
+
 }
 
 
