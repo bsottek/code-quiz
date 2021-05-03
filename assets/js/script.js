@@ -49,7 +49,7 @@ var countdown = function() {
         document.getElementById('timer').innerHTML = '00:' + timeLeft;
         timerEl.textContent = `${timeLeft} seconds remaining`;
         timeLeft--;
-        if (timeLeft < 0) {
+        if (timeLeft < 0 || iterator == questionsArray.length) {
             clearInterval(timeInterval);
             endGame();
         }
@@ -142,8 +142,10 @@ var answerHandler = function(){
         alert("Incorrect!");
     };
 
-    if (iterator < questionsArray.length){
-        iterator++;
+    iterator++;
+    console.log("iterator = " + iterator);
+
+    if (iterator < questionsArray.length+1){
         questionServer();
     }else{
         endGame;
