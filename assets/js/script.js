@@ -210,8 +210,6 @@ var endGame = function() {
 
 var leaderboard = function(score) {
 
-
-
     let subTextEl = document.getElementById('sub-text');
     subTextEl.parentNode.removeChild(subTextEl);
     let scoreEl = document.getElementById('score');
@@ -242,6 +240,8 @@ var leaderboard = function(score) {
     submitEl.setAttribute('type', 'submit');
     submitEl.setAttribute('value', 'Submit');
     formEl.appendChild(submitEl);
+
+    loadScores();
 
     submitEl.addEventListener('click', function(event){
         event.preventDefault();
@@ -275,6 +275,37 @@ var leaderboard = function(score) {
     listHeaderEl.appendChild(scoreHeaderEl);
 
 
+}
+
+var loadScores = function(){
+    //get leaderboard array from localstorage
+    scoreArray = localStorage.getItem('scores');
+
+    //check if null (no scores saved)
+    if (!scores) {
+        scores = [];
+        return (false);
+    };
+
+    //parse into object array
+    scores = JSON.parse(scores);
+
+    //print score objects to table
+    for (var i=0; i<scores.length; i++){
+        var tableRowEl = document.createElement('tr');
+        tableRowEl.id = 'table-row-'+i;
+        listEl.appendChild(tableRowEl);
+
+        var tableUserEl = document.createElement('th');
+        tableUserEl.className = 'table-entry';
+        tableUserEl.textContent = scores[i].initials;
+        tableRowEl.appendChild(tableUserEl);
+
+        var tableScoreEl = document.createElement('th');
+        tableScoreEl.className = 'table-entry';
+        tableScoreEl.textContent = scores[i].score;
+        tableRowEl.appendChild(tableScoreEl);
+    }
 }
 
 startBtn.onclick = countdown;
