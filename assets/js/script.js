@@ -169,15 +169,19 @@ var endGame = function() {
     };
 
     //print score to screen
+    scoreDiv = document.createElement('div');
+    scoreDiv.id = "score";
+    scoreDiv.className = 'box';
+    heading.appendChild(scoreDiv);
     scoreEl = document.createElement("h2");
     scoreEl.id = "score";
     scoreEl.textContent = score;
-    heading.appendChild(scoreEl);
+    scoreDiv.appendChild(scoreEl);
 
     //compare to high score
     scoreMsg = document.createElement('p');
     scoreMsg.id = 'score-message';
-    heading.appendChild(scoreMsg);
+    scoreDiv.appendChild(scoreMsg);
 
     var highScore = localStorage.getItem('highScore');
 
@@ -188,7 +192,46 @@ var endGame = function() {
         scoreMsg.textContent = "You did not beat the high score of " + highScore;
     }
 
-    
+    //store user score and initials
+    scoreBoardEl = document.createElement('div');
+    scoreBoardEl.className = 'box'
+    scoreBoardEl.id = 'score-board-div';
+    heading.appendChild(scoreBoardEl);
+
+    //create and append form with input and label
+    formEl = document.createElement('form');
+    scoreBoardEl.appendChild(formEl);
+
+    labelEl = document.createElement('label');
+    labelEl.setAttribute('for', 'initials');
+    labelEl.innerHTML = 'Enter initials:';
+    formEl.appendChild(labelEl);
+
+    inputEl = document.createElement('input');
+    inputEl.id = 'input';
+    inputEl.setAttribute('type', 'text');
+    formEl.appendChild(inputEl);
+
+    submitEl = document.createElement('input');
+    submitEl.id = 'submit';
+    submitEl.setAttribute('type', 'submit');
+    submitEl.setAttribute('value', 'Submit');
+    formEl.appendChild(submitEl);
+
+    submitEl.addEventListener('click', function(event){
+        event.preventDefault();
+
+        var initial = document.querySelector('#input').value;
+
+        if (initial === ''){
+            displayMessage('error', "Everyone's got initials. Please enter yours.");
+        }
+
+        localStorage.setItem('initials',initial);
+        localStorage.setItem('score', score);
+    })
+
+
 
 
 }
