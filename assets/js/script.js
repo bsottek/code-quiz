@@ -210,6 +210,8 @@ var endGame = function() {
 
 var leaderboard = function(score) {
 
+
+
     let subTextEl = document.getElementById('sub-text');
     subTextEl.parentNode.removeChild(subTextEl);
     let scoreEl = document.getElementById('score');
@@ -249,11 +251,13 @@ var leaderboard = function(score) {
         if (initial === ''){
             alert( "Everyone's got initials. Please enter yours.");
         }else{
-        localStorage.setItem('initials',initial);
-        localStorage.setItem('score', score);
+            //need to change this portion to save as object in score array
+            localStorage.setItem('initials',initial);
+            localStorage.setItem('score', score);
         }
     })
 
+    //create table for score standings
     listEl = document.createElement('table');
     listEl.id = 'leaderboard';
     scoreBoardEl.appendChild(listEl);
@@ -269,7 +273,6 @@ var leaderboard = function(score) {
     scoreHeaderEl = document.createElement('th');
     scoreHeaderEl.textContent = 'Score';
     listHeaderEl.appendChild(scoreHeaderEl);
-
 
 
 }
