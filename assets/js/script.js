@@ -192,6 +192,23 @@ var endGame = function() {
         scoreMsg.textContent = "You did not beat the high score of " + highScore;
     }
 
+    saveBtnEl = document.createElement('button');
+    saveBtnEl.id = 'save';
+    saveBtnEl.textContent = 'Save Score?'
+    saveBtnEl.setAttribute('onClick','leaderboard(score)');
+    scoreDiv.appendChild(saveBtnEl);
+    // saveBtnEl.addEventListener('click',leaderboard(score));
+
+    restartBtnEl = document.createElement('button');
+    restartBtnEl.id = 'restart';
+    restartBtnEl.textContent = 'Restart';
+    restartBtnEl.setAttribute('onClick','window.location.reload()');
+    scoreDiv.appendChild(restartBtnEl);
+
+}
+
+
+var leaderboard = function(score) {
     //store user score and initials
     scoreBoardEl = document.createElement('div');
     scoreBoardEl.className = 'box'
@@ -233,8 +250,6 @@ var endGame = function() {
 
 
 
-
 }
-
 
 startBtn.onclick = countdown;
