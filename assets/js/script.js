@@ -209,6 +209,12 @@ var endGame = function() {
 
 
 var leaderboard = function(score) {
+
+    let subTextEl = document.getElementById('sub-text');
+    subTextEl.parentNode.removeChild(subTextEl);
+    let scoreEl = document.getElementById('score');
+    scoreEl.parentNode.removeChild(scoreEl);
+
     //store user score and initials
     scoreBoardEl = document.createElement('div');
     scoreBoardEl.className = 'box'
@@ -241,12 +247,28 @@ var leaderboard = function(score) {
         var initial = document.querySelector('#input').value;
 
         if (initial === ''){
-            displayMessage('error', "Everyone's got initials. Please enter yours.");
-        }
-
+            alert( "Everyone's got initials. Please enter yours.");
+        }else{
         localStorage.setItem('initials',initial);
         localStorage.setItem('score', score);
+        }
     })
+
+    listEl = document.createElement('table');
+    listEl.id = 'leaderboard';
+    scoreBoardEl.appendChild(listEl);
+
+    listHeaderEl = document.createElement('tr');
+    listHeaderEl.id = 'table-header';
+    listEl.appendChild(listHeaderEl);
+
+    initialsHeaderEl = document.createElement('th');
+    initialsHeaderEl.textContent = 'User';
+    listHeaderEl.appendChild(initialsHeaderEl);
+
+    scoreHeaderEl = document.createElement('th');
+    scoreHeaderEl.textContent = 'Score';
+    listHeaderEl.appendChild(scoreHeaderEl);
 
 
 
