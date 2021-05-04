@@ -241,22 +241,6 @@ var leaderboard = function(score) {
     submitEl.setAttribute('value', 'Submit');
     formEl.appendChild(submitEl);
 
-    loadScores();
-
-    submitEl.addEventListener('click', function(event){
-        event.preventDefault();
-
-        var initial = document.querySelector('#input').value;
-
-        if (initial === ''){
-            alert( "Everyone's got initials. Please enter yours.");
-        }else{
-            //need to change this portion to save as object in score array
-            localStorage.setItem('initials',initial);
-            localStorage.setItem('score', score);
-        }
-    })
-
     //create table for score standings
     listEl = document.createElement('table');
     listEl.id = 'leaderboard';
@@ -274,6 +258,35 @@ var leaderboard = function(score) {
     scoreHeaderEl.textContent = 'Score';
     listHeaderEl.appendChild(scoreHeaderEl);
 
+    loadScores();
+
+    submitEl.addEventListener('click', function(event){
+        event.preventDefault();
+
+        var initial = document.querySelector('#input').value;
+
+        if (initial === ''){
+            alert( "Everyone's got initials. Please enter yours.");
+        }else{
+            //need to change this portion to save as object in score array
+            if(!scoreArray){
+                scoreArray[scoreArray.length] = {
+                    initials: initial,
+                    score: score,
+                    id: scoreArray.length + 1
+                }
+                localStorage.setItem('scores', JSON.stringify(scoreArray));
+            }else{
+                scoreArray[0] = {
+                    initials: initial,
+                    score: score,
+                    id: 1
+                }
+                localStorage.setItem('scores', JSON.stringify(scoreArray));
+            }
+        }
+    })
+
 
 }
 
@@ -282,28 +295,28 @@ var loadScores = function(){
     scoreArray = localStorage.getItem('scores');
 
     //check if null (no scores saved)
-    if (!scores) {
-        scores = [];
+    if (!scoreArray) {
+        scoreArray = [];
         return (false);
     };
 
     //parse into object array
-    scores = JSON.parse(scores);
+    scoreArray = JSON.parse(scoreArray);
 
     //print score objects to table
-    for (var i=0; i<scores.length; i++){
+    for (var i=0; i<scoreArray.length; i++){
         var tableRowEl = document.createElement('tr');
         tableRowEl.id = 'table-row-'+i;
         listEl.appendChild(tableRowEl);
 
         var tableUserEl = document.createElement('th');
         tableUserEl.className = 'table-entry';
-        tableUserEl.textContent = scores[i].initials;
+        tableUserEl.textContent = scoreArray[i].initials;
         tableRowEl.appendChild(tableUserEl);
 
         var tableScoreEl = document.createElement('th');
         tableScoreEl.className = 'table-entry';
-        tableScoreEl.textContent = scores[i].score;
+        tableScoreEl.textContent = scoreArray[i].score;
         tableRowEl.appendChild(tableScoreEl);
     }
 }
