@@ -1,5 +1,5 @@
 var timerEl = document.getElementById('timer');
-var mainEl = document.getElementById('heading');
+var mainEl = document.getElementById('game');
 var startBtn = document.getElementById('start');
 var iterator = 0;
 var score = 0;
@@ -75,10 +75,10 @@ var questionServer = function(){
     };
 
     // assign element vars and create button div
-    var heading = document.getElementById("heading");
+    var interface = document.getElementById("interface");
     let btnDiv = document.createElement("div");
     btnDiv.id = "buttons";
-    heading.appendChild(btnDiv);
+    interface.appendChild(btnDiv);
 
     //create buttons, fill with answers, append to button div, listen for click, run answer handler
     let btn1 = document.createElement("button");
@@ -172,7 +172,7 @@ var endGame = function() {
     scoreDiv = document.createElement('div');
     scoreDiv.id = "score";
     scoreDiv.className = 'box';
-    heading.appendChild(scoreDiv);
+    game.appendChild(scoreDiv);
     scoreEl = document.createElement("h2");
     scoreEl.id = "score";
     scoreEl.textContent = score;
@@ -219,7 +219,7 @@ var leaderboard = function(score) {
     scoreBoardEl = document.createElement('div');
     scoreBoardEl.className = 'box'
     scoreBoardEl.id = 'score-board-div';
-    heading.appendChild(scoreBoardEl);
+    game.appendChild(scoreBoardEl);
 
     //create and append form with input and label
     formEl = document.createElement('form');

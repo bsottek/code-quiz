@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+h2 {
+    flex:100%;
+    text-align: center;
+
+}
+
+#interface{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 60%;
+}
+
+#interface button{
+    flex:100%;
+    margin: 10px;
+    padding: 8px;
+}
+
+#buttons{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
