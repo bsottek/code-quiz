@@ -276,6 +276,10 @@ var leaderboard = function(score) {
                     id: scoreArray.length + 1
                 }
                 localStorage.setItem('scores', JSON.stringify(scoreArray));
+
+                document.getElementById("start").style.visibility = "visible";
+                document.getElementById("start").textContent = "Restart";
+                document.getElementById("start").setAttribute('onClick', 'window.location.reload()');
             }else{
                 scoreArray[0] = {
                     initials: initial,
@@ -283,6 +287,10 @@ var leaderboard = function(score) {
                     id: 1
                 }
                 localStorage.setItem('scores', JSON.stringify(scoreArray));
+
+                document.getElementById("start").style.visibility = "visible";
+                document.getElementById("start").textContent = "Restart";
+                document.getElementById("start").setAttribute('onClick', 'window.location.reload()');
             }
         }
     })
