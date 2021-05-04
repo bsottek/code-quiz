@@ -269,7 +269,7 @@ var leaderboard = function(score) {
             alert( "Everyone's got initials. Please enter yours.");
         }else{
             //need to change this portion to save as object in score array
-            if(!scoreArray){
+            if(scoreArray){
                 scoreArray[scoreArray.length] = {
                     initials: initial,
                     score: score,
@@ -302,6 +302,7 @@ var loadScores = function(){
 
     //parse into object array
     scoreArray = JSON.parse(scoreArray);
+    scoreArray = scoreArray.sort((a, b) => b.score - a.score);
 
     //print score objects to table
     for (var i=0; i<scoreArray.length; i++){
