@@ -228,7 +228,7 @@ var leaderboard = function(score) {
     scoreBoardEl = document.createElement('div');
     scoreBoardEl.className = 'box'
     scoreBoardEl.id = 'score-board-div';
-    game.appendChild(scoreBoardEl);
+    interface.appendChild(scoreBoardEl);
 
     //create and append form with input and label
     formEl = document.createElement('form');
