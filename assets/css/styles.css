@@ -65,3 +65,20 @@ ul{
 ul li{
     margin: 0 30;
 }
+
+#score {
+    flex:100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#score p{
+    flex: 100%;
+    text-align: center;
+}
+
+#score button{
+    flex: 50%;
+}

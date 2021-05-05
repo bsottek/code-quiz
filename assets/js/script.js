@@ -179,7 +179,7 @@ var endGame = function() {
     scoreDiv = document.createElement('div');
     scoreDiv.id = "score";
     scoreDiv.className = 'box';
-    game.appendChild(scoreDiv);
+    interface.appendChild(scoreDiv);
     scoreEl = document.createElement("h2");
     scoreEl.id = "score";
     scoreEl.textContent = score;
