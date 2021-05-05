@@ -29,7 +29,7 @@ h2 {
 
 #sub-text{
     flex: 100%;
-    font-size: larger;
+    font-size: x-large;
 }
 
 #interface{
@@ -57,21 +57,22 @@ h2 {
     flex:100%;
     display: flex;
     align-items: center;
+    max-width: 50%;
 }
 
 #answers-title{
-    flex:40%;
+    flex:10%;
     text-align: right;
 }
 
-ul{
+ol{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    flex: 60%;
+    justify-content: space-evenly;
+    flex: 20;
 }
 
-ul li{
+ol li{
     margin: 0 30;
 }
 
