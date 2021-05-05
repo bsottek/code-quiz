@@ -127,14 +127,21 @@ var questionServer = function(){
 }
 
 var answerHandler = function(){
+    document.getElementById('answers-title').style.visibility = 'visible';
     if (answer === questionsArray[iterator].correct) {
         score += 20;
         console.log(score);
-        alert("Correct!");
+        answerEl = document.createElement('li');
+        answerEl.className = 'answerEl'
+        answerEl.textContent = 'Correct';
+        document.getElementById('answer-list').appendChild(answerEl);
     } else {
         timeLeft -= 10;
         console.log(score);
-        alert("Incorrect!");
+        answerEl = document.createElement('li');
+        answerEl.className = 'answerEl'
+        answerEl.textContent = 'Incorrect';
+        document.getElementById('answer-list').appendChild(answerEl);
     };
 
     iterator++;
@@ -162,7 +169,7 @@ var endGame = function() {
     document.getElementById("timer").style.visibility = "hidden";
     document.getElementById("sub-text").textContent = "That's it! The quiz is over and here's your score:"
 
-    //clear buttons
+    //clear buttons and answers
     if (document.getElementById('buttons')) {
         var el = document.getElementById('buttons');
         el.parentNode.removeChild(el);
@@ -214,6 +221,8 @@ var leaderboard = function(score) {
     subTextEl.parentNode.removeChild(subTextEl);
     let scoreEl = document.getElementById('score');
     scoreEl.parentNode.removeChild(scoreEl);
+    let answerEl = document.getElementById('answer-container');
+    answerEl.parentNode.removeChild(answerEl);
 
     //store user score and initials
     scoreBoardEl = document.createElement('div');
